@@ -1,0 +1,13 @@
+[workspace]
+
+members = [
+    "main",
+    "Pokemons"
+]
+
+#here we can specify 
+# what to run if nothing is specified
+# with for example: cargo run -p PokemonDomain
+default-members = [
+    "Pokemons"
+]
