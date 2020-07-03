@@ -6,6 +6,7 @@ use bytes::buf::BufExt as _;
 use bytes::Buf;
 use serde_json::{Value};
 use anyhow::Result;
+use regex::Regex;
 
 pub async fn get_json_value_from_url(fullUri: String) -> Result<Value> {
 
@@ -54,12 +55,23 @@ pub async fn transform_text_into_shakespeare_text(text: String) ->  Result<Strin
 
     let client = get_https_client();
 
-    let params = r#"{"text":":placeholder"}"#;
+    //panic!("{:#?}", text);
 
-    let params = params.replace(":placeholder", &text);
+    let params = r#"{"text": ":placeholder"}"#;
 
-    panic!("{:#?}", params);
-     
+    let mut params = params.replace(":placeholder", &text);
+
+    let re = Regex::new(r"\u{0000}-\u{001F}").unwrap();
+    let params = re.replace_all(&text, "");
+
+    //let mut params = params.replace_range("\u{0000}-\u{001F}", "");
+
+
+
+    let json: Value = serde_json::from_str(&params)?;
+
+    panic!("{:#?}", json);
+ 
       let req = Request::builder()
          .method("POST")
         .uri("https://api.funtranslations.com/translate/shakespeare.json")

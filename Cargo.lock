@@ -18,6 +18,7 @@ dependencies = [
  "bytes",
  "hyper",
  "hyper-tls",
+ "regex",
  "serde_json",
  "tokio",
 ]
