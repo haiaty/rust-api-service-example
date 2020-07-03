@@ -1,8 +1,11 @@
 
-use WebUtils::{get_json_value_from_url, transform_text_into_shakespeare_text};
+use WebUtils::{get_json_value_from_url};
 use serde_json::{Value};
 use anyhow::Result;
 
+/**
+ * 
+ */
 pub async fn buildPokemonDescription(pokemonDetails : &Value) -> Result<String> {
 
     let mut pokemonDescrition = String::from("");
@@ -29,6 +32,10 @@ pub async fn buildPokemonDescription(pokemonDetails : &Value) -> Result<String> 
 
     }
 
+    // here we remove some control chars
+    // that may be find in the built pokemon
+    // description
+    let pokemonDescritionCleansed: String = pokemonDescrition.chars().filter(|c|  ! c.is_control()).collect();
 
-    Ok(pokemonDescrition)
+    Ok(pokemonDescritionCleansed)
 }

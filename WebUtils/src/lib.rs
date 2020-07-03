@@ -1,13 +1,13 @@
-
+#![allow(non_snake_case)]
 use hyper::Client;
 use hyper::{Body,Request};
 use hyper_tls::HttpsConnector;
-use bytes::buf::BufExt as _;
 use bytes::Buf;
 use serde_json::{Value};
 use anyhow::Result;
 use regex::Regex;
 
+// TODO: rename to fetch_json
 pub async fn get_json_value_from_url(fullUri: String) -> Result<Value> {
 
 let client = get_https_client();
@@ -59,18 +59,21 @@ pub async fn transform_text_into_shakespeare_text(text: String) ->  Result<Strin
 
     let params = r#"{"text": ":placeholder"}"#;
 
-    let mut params = params.replace(":placeholder", &text);
+    let params = params.replace(":placeholder", &text);
 
-    let re = Regex::new(r"\u{0000}-\u{001F}").unwrap();
-    let params = re.replace_all(&text, "");
+
+    /*let re = Regex::new(r"\u{0000}-\u{001F}").unwrap();
+    let mut params = re.replace_all(&text, "");*/
+
+    //params.trim();
 
     //let mut params = params.replace_range("\u{0000}-\u{001F}", "");
 
 
 
-    let json: Value = serde_json::from_str(&params)?;
+    //let json: Value = serde_json::from_str(params.trim()).unwrap();
 
-    panic!("{:#?}", json);
+    //panic!("{:#?}", json);
  
       let req = Request::builder()
          .method("POST")
