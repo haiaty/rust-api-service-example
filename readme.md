@@ -23,6 +23,14 @@ git clone https://github.com/haiaty/rust-api-service-example.git
 cargo run
 `
 
+* run tests:
+
+NOTE: since we have test only in the Pokemons module we filter it
+
+`
+cargo test -p Pokemons
+`
+
 
 
 ### references: 
