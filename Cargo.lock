@@ -6,6 +6,7 @@ version = "0.1.0"
 dependencies = [
  "WebUtils",
  "anyhow",
+ "serde",
  "serde_json",
  "tokio",
 ]
@@ -981,6 +982,7 @@ dependencies = [
 name = "main"
 version = "0.1.0"
 dependencies = [
+ "Pokemons",
  "actix-rt",
  "actix-web",
  "anyhow",

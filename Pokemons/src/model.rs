@@ -1,8 +1,11 @@
 
+use serde::{Serialize};
 
-#[derive(Debug)]
+/**
+ * The Pokemon domain model
+ */
+#[derive(Debug, Serialize)]
 pub struct Pokemon {
     pub name: String,
     pub description: String,
-    pub shakespearean_description: String,
 }

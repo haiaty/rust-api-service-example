@@ -9,5 +9,5 @@ members = [
 # what to run if nothing is specified
 # with for example: cargo run -p PokemonDomain
 default-members = [
-    "Pokemons"
+    "main"
 ]

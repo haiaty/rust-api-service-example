@@ -1,30 +1,35 @@
 
-
-// A Job is responsible for one element of execution in the application, 
-// and play the role of a step in the accomplishment of a feature.
-
-// no Job should dispatch another Job
-
-//They can be ran by any Feature from any Service, 
-// and it is the only way of communication between services and domains.
-
-use WebUtils::get_json_value_from_url;
+use WebUtils::fetch_json;
 use serde_json::{Value};
-//use WebUtils::{get_json_value_from_url};
 
-pub async fn getPokemonDetailsFromWebApi() -> Value {
+/**
+ * Get the details of a pokemon from 
+ * a remote web service
+ */
+pub async fn getPokemonDetailsFromWebApi(pokemonName: &str) -> Result<Value, anyhow::Error> {
     
-    let name = "charizard";
-
+    //================
+    // Build Uri
+    //================
+    // Here we build the uri that will be used to retrieve
+    // pokemon information.
+    //
+    // NOTE: here I've hardcoded the base uri of the endpoint only for this test.
+    // In production this may be taken from an .env file for example
     let baseUri = "https://pokeapi.co/api/v2/pokemon/";
 
     let mut fullUri  =  String::from("");
-
     fullUri.push_str(baseUri);
-    fullUri.push_str(name);
+    fullUri.push_str(pokemonName);
 
-    let pokemonDetails : Value = get_json_value_from_url(fullUri).await.expect("Error getting from webapi");
+    //==================
+    // Execute call to remote service
+    //==================
+    let pokemonDetails : Value = fetch_json(fullUri).await?;
 
-    pokemonDetails
+    //==================
+    // return
+    //==================
+    Ok(pokemonDetails)
 
 }
