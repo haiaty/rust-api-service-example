@@ -6,7 +6,7 @@ This is an example of an API server/ Backend written in Rust (using actix framew
 
 How to get it running:
 
-##Manual installation
+## Manual installation
 
 * install rust: https://www.rust-lang.org/tools/install
 
