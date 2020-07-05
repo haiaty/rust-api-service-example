@@ -1,3 +1,4 @@
+#![allow(non_snake_case)]
 extern crate hyper;
 
 use actix_web::{web, App, HttpRequest, HttpServer, Responder};

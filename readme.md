@@ -17,10 +17,23 @@ How to get it running:
 git clone https://github.com/haiaty/rust-api-service-example.git
 `
 
+* cd into it
+
+`
+cd rust-api-service-example
+`
+
+
 *  run:
 
 `
 cargo run
+`
+
+* then try it:
+
+`
+curl http://127.0.0.1:8000/pokemon/pikachu
 `
 
 * run tests:
